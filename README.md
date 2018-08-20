@@ -1,7 +1,7 @@
 # EmployeeService
 Employee Service
 
-Employee service for add(post), edit(put), delete(post) and getEmployee(get)
+Employee service for add(post), edit(put), delete(delete) and getEmployee(get)
 -----------------------------------------------------------------------------
 Sample Json
 ---------------

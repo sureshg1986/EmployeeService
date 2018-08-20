@@ -2,6 +2,7 @@ package com.employee.service;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -168,7 +169,7 @@ public class EmployeeApplicationTests {
 		try {
 			employee.setEmpName("s");
 			mockMvc.perform(
-					post("/delete")
+					delete("/delete")
 		                    .contentType(MediaType.APPLICATION_JSON)
 		                    .content(asJsonString(employee)))
 		            .andExpect(status().isInternalServerError());
@@ -183,7 +184,7 @@ public class EmployeeApplicationTests {
 
 		try {
 			mockMvc.perform(
-		            post("/delete")
+					delete("/delete")
 		                    .contentType(MediaType.APPLICATION_JSON)
 		                    .content(asJsonString(employee)))
 		            .andExpect(status().isOk());
@@ -199,7 +200,7 @@ public class EmployeeApplicationTests {
 		try {
 			employee=new Employee();
 			mockMvc.perform(
-		            post("/delete")
+		            delete("/delete")
 		                    .contentType(MediaType.APPLICATION_JSON)
 		                    .content(asJsonString(employee)))
 		            .andExpect(status().isInternalServerError());
@@ -215,7 +216,7 @@ public class EmployeeApplicationTests {
 		try {
 			employee.setDob("12");
 			MvcResult mockResult= mockMvc.perform(
-		            post("/delete")
+					delete("/delete")
 		                    .contentType(MediaType.APPLICATION_JSON)
 		                    .content(asJsonString(employee)))
 		            .andExpect(status().isInternalServerError())

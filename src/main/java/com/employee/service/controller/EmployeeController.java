@@ -46,6 +46,9 @@ public class EmployeeController {
 		if(validatorException.length()!=0){
 			EmployeeUtils.throwValidationsException(validatorException, Constants.methodNames.apiAddEmployee);
 		}
+		if(employeeRepository.findByEmpId(employee.getEmpId())!=null){
+			EmployeeUtils.throwValidationsException("Employee Already available", Constants.methodNames.apiEditEmployee);
+		}
 		employeeRepository.save(employee);
 		return ResponseEntity.status(HttpStatus.OK).body("SUCCESS");
 	}
@@ -69,7 +72,7 @@ public class EmployeeController {
 	}
 
 	@GenericLog
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	public Object deleteEmployee(@Valid @RequestBody Employee employee, BindingResult bindingResult) throws GenericException {
 		if (bindingResult.hasErrors()) {
 			EmployeeUtils.throwBeanValidations(bindingResult, Constants.methodNames.apiDeleteEmployee);
